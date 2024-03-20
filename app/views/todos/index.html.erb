@@ -1,0 +1,23 @@
+<h1>To-do Tasks</h1>
+
+<a href='/todos/new'>Add Task</a>
+<ul>
+
+  <% @todos.each do |todo| %>
+    <li>
+    <%= form_tag toggle_done_path(todo.id), method: :patch, id: "todo_form_#{todo.id}" do %>
+      <%= check_box("todo", todo.id, checked: todo.done, :onclick => "handleCheck(#{todo.id});")%>
+      <%= link_to (todo.done ? "<s>#{todo.title}</s>".html_safe : todo.title), todo %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<script>
+function handleCheck(todoId) {
+  event.preventDefault()
+  console.log(`clicked`)
+  document.getElementById(`todo_form_${todoId}`).submit();
+
+}
+</script>

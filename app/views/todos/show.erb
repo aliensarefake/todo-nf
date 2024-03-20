@@ -1,0 +1,10 @@
+<a href = '/'><- go back </a>
+
+<h1><%= @todo.title %></h1>
+
+<p><%= @todo.body %></p>
+
+<%= link_to "Delete Task", todo_path(@todo), data: {
+  turbo_method: :delete,
+  turbo_confirm: "Are you sure?"} 
+%>
